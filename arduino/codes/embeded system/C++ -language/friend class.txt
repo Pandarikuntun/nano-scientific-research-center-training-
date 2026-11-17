@@ -1,0 +1,74 @@
+#include<iostream>
+using namespace std;
+class name
+{
+	int x;
+	public:name()
+	{
+		x=5;
+			}
+	friend class name2;		
+};
+class name1
+{
+	int y;
+	public:name1()
+	{
+		y=100;
+	}
+	friend class name2;
+};
+class name2
+{
+	int z;
+	public:name2()
+	{
+		z=20;
+	}
+	void greatest(name obj,name1 obj1)
+	{
+	obj.x>obj1.y ? (obj.x>z ? cout<<obj.x<<endl :cout<<z<<endl) :(obj1.y>z ? cout<<obj1.y<<endl : cout<<z<<endl);	
+		
+	}
+	
+};
+int main()
+{
+	name obj2;
+	name1 obj3;
+	name2 obj4;
+	obj4.greatest(obj2,obj3);
+	return 0;
+} 
+*************************************************************
+#include<iostream>
+using namespace std;
+class  Base
+{
+private:int x;
+protected:int y;
+public: void sum()
+	{
+		x=10;
+		y=20;
+		cout<<x+y<<endl;
+	}
+	};
+	class Derived :  public Base
+	{
+		int z;
+		public:void mult()
+		{
+			x=30;
+			y=5;
+			z=20;
+			cout<<x*y*z<<endl;
+		}
+	};
+int main()
+{
+	Derive obj;
+	obj.sum();
+	obj.mult();
+	return 0;
+}

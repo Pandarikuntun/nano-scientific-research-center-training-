@@ -1,0 +1,104 @@
+in cpp we can retrive or get the current object address using this pointer
+whenever the DM and function Arguments names are same then
+compiller get confuse like which one is Dm and Wich  one is Arguments
+this pointer returns the address of object variable
+this keyword returns current object address
+
+#include <iostream>
+using namespace std;
+class name
+{
+    int x;
+    public: void dis()
+    {
+        x=10;
+        cout<<this<<endl;
+        cout<<this->x<<endl;
+    }
+};
+
+
+int main()
+{
+name obj;
+obj.dis();
+
+    return 0;
+}
+********************************************************
+
+
+#include <iostream>
+using namespace std;
+class name
+{
+    int x,y;
+    public: void dis(int x,int y)
+    {
+        x=x;
+        y=y;
+        cout<<this<<endl;
+        cout<<this->x<<endl;
+          cout<<this->x<<endl;
+    }
+};
+
+
+int main()
+{
+name obj;
+obj.dis(5,90);
+
+    return 0;
+}
+***************************************************************************
+
+#include <iostream>
+using namespace std;
+class name
+{
+    int x,y;
+    public: void dis(int x,int y)
+    {
+     this->x=x;
+       this->y=y;
+        cout<<this<<endl;
+        cout<<this->x<<endl;
+          cout<<this->y<<endl;
+    }
+};
+
+
+int main()
+{
+name obj;
+obj.dis(5,90);
+
+    return 0;
+}
+***************************************************************************
+
+#include <iostream>
+using namespace std;
+class name
+{
+    int x,y;
+    public: void dis(int x,int y)
+    {
+     (*this).x=x;
+      (* this).y=y;
+        cout<<this<<endl;
+        cout<<this->x<<endl;
+          cout<<this->y<<endl;
+    }
+};
+
+
+int main()
+{
+name obj;
+obj.dis(5,90);
+
+    return 0;
+}
+********************************************************************************

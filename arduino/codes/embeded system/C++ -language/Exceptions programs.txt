@@ -1,0 +1,149 @@
+An exception is a problem that arises during the execution of a program. 
+A C++ exception is a response to an exceptional circumstance that arises while a program is running,
+ such as an attempt to divide by zero.
+
+1. try in C++
+The try keyword represents a block of code that may throw an exception placed inside the try block.
+ It’s followed by one or more catch blocks. If an exception occurs, try block throws that exception.
+
+2. catch in C++
+The catch statement represents a block of code that is executed when a particular exception is
+ thrown from the try block. The code to handle the exception is written inside the catch block.
+
+3. throw in C++
+An exception in C++ can be thrown using the throw keyword. When a program encounters a throw 
+statement, then it immediately terminates the current function and starts finding a matching 
+catch block to handle the thrown exception.
+
+Note: Multiple catch statements can be used to catch different type of exceptions thrown by try block.
+
+
+The try and catch keywords come in pairs: We use the try block to test some code and If the code 
+throws an exception we will handle it in our catch block
+C++ try and catch
+Exception handling in C++ consist of three keywords: try, throw and catch:
+
+The try statement allows you to define a block of code to be tested for errors while
+ it is being executed.
+
+The throw keyword throws an exception when a problem is detected, which lets us create a custom error.
+
+The catch statement allows you to define a block of code to be executed, if an error occurs in the try
+ block.
+
+The try and catch keywords come in pairs:
+*****************************************************************************************
+#include<iostream>
+using namespace std ;
+
+int main()
+{
+    int age;
+    cout<<"enter age";
+    cin>>age;
+    try {
+  
+  if (age >= 18) {
+    cout << "Access granted - you are old enough.";
+  } else {
+    throw age;
+  }
+}
+catch (int myNum) {
+  cout << "Access denied - You must be at least 18 years old.\n";
+  cout << "Age is: " << myNum;
+}
+
+return 0;
+}
+******************************************************************************
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num1, num2;
+    cout << "Enter two numbers: ";
+    cin >> num1 >> num2;
+
+    try {
+        if (num2 == 0)
+            throw "Division by zero condition!";
+        else {
+            cout << "Result: " << num1 / num2 << endl;
+        }
+    } catch (const char* msg) {
+        cerr << "Error: " << msg << endl;
+    }
+
+    return 0;
+}
+*****************************************************************
+HANDLE  ALL EXCEPTIONS
+****************************************************************
+#include <iostream>
+using namespace std;
+
+int main() {
+    try {
+        throw "error";
+    
+    } catch (...) { // Catch all other exceptions
+        cout << "Caught an unknown exception." << endl;
+    }
+
+    return 0;
+
+}
+
+#include <iostream>
+using namespace std;
+int main() {
+    
+    double numerator, denominator, arr[4];
+    int index;
+    
+    cout << "Enter array index: ";
+    cin >> index;
+    
+    try {
+        
+        // throw exception if array out of bounds
+        if (index >= 4)
+            throw "Error: Array out of bounds!";
+            
+        // not executed if array is out of bounds
+
+
+        // not executed if denominator is 0
+        for(int i=0;i<index;i++)
+        {
+                    cout << "Enter numerator: ";
+        cin >> numerator;
+    
+        cout << "Enter denominator: ";
+        cin >> denominator;
+
+        // throw exception if denominator is 0
+        try
+        {
+        if (denominator == 0)
+            throw 0;
+        }
+         catch (int x) {
+        cout << "can't divide with zero!" << endl;
+    }
+        arr[i] = numerator / denominator;
+        cout << arr[i] << endl;
+        }
+    }
+
+    
+    
+  
+    // catch any other exception
+    catch (...) {
+        cout << "Unexpected exception!3" << endl;
+    }
+    
+    return 0;    
+}

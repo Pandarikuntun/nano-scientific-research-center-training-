@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+.head{
+    text-align: left;
+    font-size: 20px;
+    margin: 5px;
+    padding: 0px;
+    color: rgb(38, 0, 255);
+}
+
+section {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-start;
+    flex-wrap: wrap; 
+    padding: 5px;
+    margin: 5px;
+
+}
+
+.container {
+    padding: 10px; 
+    margin: 10px;
+    border-radius: 10px; 
+    flex:auto;
+} 
+
+.container img {
+    height: 230px;
+    width: 180px;
+    border-radius: 10px;
+    display: block; 
+}
+.next{
+    text-align: center;
+}

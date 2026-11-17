@@ -1,0 +1,115 @@
+INSTANCE VARIABLES ARE RELATED TO OBJECT
+MEANS SEPERATE MEMORY CREATED FOR EACH OBJECT
+
+EX:
+class name
+{
+int x,y;
+}
+main()
+{
+
+name obj1,obj2;
+
+}
+
+STATIC DM BELONGS TO A CLASS AND CREATE ONLY ONE COPY OR MEMORY
+ALL OBJECTS SHARES THE SINGLE STATIC MEMORY
+STATIC DM INITIALIZATION SHOULD BE OUTSIDE THE CLASS BUT
+INSTANCE DM ARE INITIALIZED WITH CONSTRUCTOR OR MF 
+INSTANCE DM DEFAULT VALUE IS GARBAGE VALUE
+STATIC DM DEFAULT VALUE IS ZERO
+
+FOR STATIC ONLY ONE COPY CREATED
+THE LIFE TIME OF STATIC IS ENTIRE PROGRAM AND VISIBLE WITHIN CLASS
+
+syntax for static to initialize outside class is
+
+data_type class_name ::var;
+
+#include <iostream>
+using namespace std;
+class name{
+    int x; // instance dm
+    static int y;  // static dm
+    public:
+    void dis()
+    {
+        x=10;
+        x++;
+            y++;
+        cout<<x<<"\n"<<y<<endl;
+        
+    }
+};
+int name ::y=5;
+int main()
+{
+ name obj1,obj2;
+ obj1.dis();
+ obj2.dis();
+ 
+
+    return 0;
+}
+*****************************************************************
+#include <iostream>
+using namespace std;
+class name{
+    int x; // instance dm
+    static int y;  // static dm
+    public:
+    void dis()
+    {
+        x=10;
+        x++;
+            y++;
+        cout<<x<<"\n"<<y<<endl;
+        
+    }
+};
+int name ::y;
+int main()
+{
+ name obj1,obj2;
+ obj1.dis();
+ obj2.dis();
+ 
+
+    return 0;
+}
+
+****************************************************************
+USECASE
+***************************************************
+TO DEFINE NUMERICAL CONSTANTS
+You can keep track of how many objects have been instantiated from 
+a class by incrementing a static data member
+ex:
+************************************************************
+#include <iostream>
+using namespace std;
+class name{
+    int x; // instance dm
+    static int y;  // static dm
+    public:
+    void dis(int a)
+    {
+        x=a;
+        y++;
+        cout<<x<<"\n"<<y<<endl;
+        
+    }
+};
+int name ::y=0;
+int main()
+{
+ name obj1,obj2;
+ obj1.dis(5);
+ obj2.dis(20);
+ 
+
+    return 0;
+}
+
+

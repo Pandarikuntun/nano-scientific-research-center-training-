@@ -1,0 +1,52 @@
+#include "reg51.h"
+#define SegOne   0xfe
+#define SegTwo   0xfd
+#define SegThree 0xfb
+#define SegFour  0xf7	
+
+void DELAY_ms(unsigned int ms_Count) 
+{
+    unsigned int i, j;
+    for (i = 0; i < ms_Count; i++) 
+    {
+        for (j = 0; j < 100; j++);
+    }
+}
+
+int main() {
+    char hexvalue[] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71};
+    int cnt, num, temp,i;
+
+
+    while (1) 
+    {
+        for (cnt = 0x00; cnt <= 9999; cnt++) // loop to display 0-F
+        {
+            for (i = 0; i < 100; i++)
+            {
+                num = cnt;
+                temp = num / 1000;
+                num = num % 1000;
+                P3 = SegOne; 
+                P2 = hexvalue[temp];               
+                DELAY_ms(1);
+
+                temp = num / 100;
+                num = num % 100;
+                P3 = SegTwo; 
+                P2 = hexvalue[temp];
+                DELAY_ms(1);
+
+                temp = num / 10;
+                P3 = SegThree;
+                P2 = hexvalue[temp];
+                DELAY_ms(1);
+
+                temp = num % 10;
+                P3 = SegFour;
+                P2 = hexvalue[temp];
+                DELAY_ms(1);                              
+            }
+        }
+    }
+}

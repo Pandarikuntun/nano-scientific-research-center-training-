@@ -1,0 +1,52 @@
+// DEFINE  COMMON ADDRESS OF PERIPHERAL
+// BUS ADDRESS
+// PERIPHERAL ADDRESS
+#define PER_ADDRESS  0x40000000
+#define  AHB2_OFFSET    0X08000000 // 0x48000000-0x40000000= 0X08000000
+#define AHB2_BASE   (PER_ADDRESS+AHB2_OFFSET)
+#define  GPIOD_OFFSET   0X00000C00         // 0x48000C00-0x48000000=0X00000C00
+#define GPIOD_BASE  (AHB2_BASE+GPIOD_OFFSET)
+#define  AHB1_OFFSET     0X00020000          //    x4002 0000 - 0x40000000=0X00020000
+#define AHB1_BASE (PER_ADDRESS+AHB1_OFFSET)
+#define RCC_OFFSET     0X00001000   // 0x4002 1000-0x4002 0000 =0X00001000
+#define RCC_BASE   (AHB1_BASE+RCC_OFFSET)
+#define GPIO_MDR_OFFSET 0x00
+#define GPIOD_MDR  (*(volatile unsigned int*)(GPIOD_BASE+GPIO_MDR_OFFSET))
+#define GPIO_ODR_OFFSET  0x14
+#define GPIOD_ODR (*(volatile unsigned int*)(GPIOD_BASE+GPIO_ODR_OFFSET))
+#define AHB2ENR_OFFSET 0x4C
+#define AHB2ENR  (*(volatile unsigned int*)(RCC_BASE+AHB2ENR_OFFSET))
+#define PIN_0 (1<<0) //     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+#define PIN_1 (1<<1)   //   0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0
+#define PIN_2 (1<<2)   //   0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0
+#define PIN_3 (1<<3)  //    0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0
+#define PIN_4 (1<<4) //     0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0
+#define PIN_5 (1<<5)  //    0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0
+void delay()
+{
+	int i,j;
+	for(i=0;i<1000;i++)
+		for(j=0;j<1000;j++);
+
+}
+int main()
+{
+// enable clock
+	AHB2ENR |=(1<<3);
+	// select GPIOD PIN5 SET AS A OUTPUT
+	GPIOD_MDR |=(1<<10);
+	GPIOD_MDR &=~(1<<11);
+	// WRIE ONE IN GPIOD PIN5
+
+while(1)
+{
+
+	GPIOD_ODR |=PIN_5;
+	delay();    //HAL_Delay(1000);
+	GPIOD_ODR &=~PIN_5;
+	delay();  //HAL_Delay(1000);
+}
+
+return 0;
+}
+
